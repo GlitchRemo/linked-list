@@ -1,23 +1,22 @@
 package com.thoughtworks.step;
 
-public class Node {
-  private final int value;
-  private Node next;
+public class Node<T> {
+  private final T value;
+  private Node<T> next;
 
-  public Node(int value, Node next) {
+  public Node(T value) {
     this.value = value;
-    this.next = next;
   }
 
-  public int getValue() {
+  public T getValue() {
     return this.value;
   }
 
-  public Node getNext() {
+  public Node<T> getNext() {
     return this.next;
   }
 
-  public void setNext(Node node) {
+  public void setNext(Node<T> node) {
     this.next = node;
   }
 
