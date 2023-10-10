@@ -26,7 +26,7 @@ public class LinkedList<T> {
     this.head = node;
   }
 
-  public Node<T> find(int index) {
+  private Node<T> find(int index) {
     int count = 1;
     Node<T> currentNode = this.head;
 
