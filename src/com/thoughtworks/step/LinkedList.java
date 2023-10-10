@@ -5,10 +5,10 @@ public class LinkedList<T> {
   private Node<T> tail;
 
   public static <T> LinkedList<T> create() {
-    return new LinkedList<T>();
+    return new LinkedList<>();
   }
 
-  public void add(T value) {
+  public void push(T value) {
     Node<T> node = new Node<>(value);
 
     if (this.head == null) {
@@ -20,28 +20,32 @@ public class LinkedList<T> {
     this.tail = node;
   }
 
-  public void addFirst(T value) {
+  public void unshift(T value) {
     Node<T> node = new Node<>(value);
     node.setNext(this.head);
     this.head = node;
   }
 
-  public void add(int index, T value) throws IndexOutOfBoundsException {
-    if (index < 0 || index >= this.size()) throw new IndexOutOfBoundsException();
-
-    if (index == 0) {
-      this.addFirst(value);
-      return;
-    }
-
+  public Node<T> find(int index) {
     int count = 1;
     Node<T> currentNode = this.head;
-    Node<T> node = new Node<>(value);
 
     while (count < index) {
       currentNode = currentNode.getNext();
       count++;
     }
+
+    return currentNode;
+  }
+
+  public void insert(int index, T value) {
+    if (index == 0) {
+      this.unshift(value);
+      return;
+    }
+
+    Node<T> node = new Node<>(value);
+    Node<T> currentNode = this.find(index - 1);
 
     node.setNext(currentNode.getNext());
     currentNode.setNext(node);
@@ -59,7 +63,7 @@ public class LinkedList<T> {
     return size;
   }
 
-  public void delete() {
+  public void remove() {
     Node<T> currentNode = this.head;
 
     while (currentNode.getNext() != this.tail) {
@@ -76,7 +80,7 @@ public class LinkedList<T> {
     Node<T> currentNode = this.head;
 
     while (currentNode != null) {
-      stringifiedList += currentNode.getValue() + " ";
+      stringifiedList += (currentNode.getValue() + " ");
       currentNode = currentNode.getNext();
     }
 
